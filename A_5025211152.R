@@ -134,7 +134,6 @@ hist(chisquare_data, breaks = 10, main = "Histogram Distribusi Chi-Square dari 1
 
 #nilai rataan
 nilai_rataan <- v; nilai_rataan
-#10
 
 #nilai varian
 nilai_varian <- 2*v; nilai_varian
@@ -184,8 +183,12 @@ sd_data = 8
 data <- rnorm(n, mean_data, sd_data); data
 rataan_data <- mean(data)
 
-X1 <- floor(rataan_data)
-X2 <- ceiling(rataan_data)
+X1 <- floor(rataan_data); X1
+X2 <- ceiling(rataan_data); X2
+
+upper_prob <- pnorm(X2, mean_data, sd_data)
+lower_prob <- pnorm(X1, mean_data, sd_data)
+probability <- upper_prob - lower_prob ; probability
 
 z_scores <- (data - rataan_data)/ sd(data); z_scores
 par(mfrow=c(1,1))
