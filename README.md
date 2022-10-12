@@ -9,4 +9,5 @@ n = 3
 dgeom (x = n, prob = p)
 ```
 Dimana didapatkan output 
+
 ![1a](https://user-images.githubusercontent.com/90272678/195225335-563ac305-198b-4df5-946f-29ddb157bf71.png)
