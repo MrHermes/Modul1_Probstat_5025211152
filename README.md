@@ -344,4 +344,4 @@ Dengan keterangan, `var` adalah fungsi untuk mencari variansi data
 ![6c](https://user-images.githubusercontent.com/90272678/195313998-955efb41-5206-4f3b-a3df-d3f6acd6673c.png)
 
 
-#Sekian, Terima kasih
+# Sekian, Terima kasih
