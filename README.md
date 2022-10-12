@@ -182,7 +182,7 @@ nilai_rataan <- lambda; nilai_rataan
 #nilai varian
 nilai_varian <- lambda; nilai_varian
 ```
-
+Dengan keterangan, `lambda` adalah mean atau rata-rata berdasarkan historis
 Dimana didapatkan output
 
 ![3d](https://user-images.githubusercontent.com/90272678/195280789-ad356d21-c76e-4df9-a65d-58c2a7ff248c.png)
