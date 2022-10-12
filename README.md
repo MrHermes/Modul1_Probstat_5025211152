@@ -170,10 +170,10 @@ Dimana didapatkan output
 ![3bhisto](https://user-images.githubusercontent.com/90272678/195279325-f1440a3f-1aed-4ba2-8530-26ff3666b6f7.png)
 ![3bsummary_value](https://user-images.githubusercontent.com/90272678/195279374-87252ce3-9d66-44fd-860e-4ca1168479a3.png)
 
-#### c dan bandingkan hasil poin a dan b , Apa kesimpulan yang bisa didapatkan
+#### c. dan bandingkan hasil poin a dan b , Apa kesimpulan yang bisa didapatkan
 ###### Didapatkan hasil pada 3a adalah 0.1281201, sedangkan pada 3b didapatkan hasil yang mendekati, sehingga dapat ditarik kesimpulan bahwa perhitungan pada 3a mendekati simulasi terkait yang dilakukan pada soal 3b
 
-#### d Nilai Rataan (μ) dan Varian (σ²) dari Distribusi Poisson.
+#### d. Nilai Rataan (μ) dan Varian (σ²) dari Distribusi Poisson.
 
 ```R
 #nilai rataan
@@ -186,3 +186,162 @@ nilai_varian <- lambda; nilai_varian
 Dimana didapatkan output
 
 ![3d](https://user-images.githubusercontent.com/90272678/195280789-ad356d21-c76e-4df9-a65d-58c2a7ff248c.png)
+
+## 4. Diketahui nilai x = 2 dan v = 10. Tentukan:
+#### a. Fungsi Probabilitas dari Distribusi Chi-Square.
+
+```R
+x = 2
+v = 10
+dchisq(x, v)
+```
+Dengan keterangan, `x` adalah data vektor, dan `v` adalah *degree of freedom* 
+
+Dimana didapatkan output
+
+![4a](https://user-images.githubusercontent.com/90272678/195287949-e90a1370-a656-4b0b-aeba-78da8fb9b876.png)
+
+#### b. Histogram dari Distribusi Chi-Square dengan 100 data random.
+
+```R
+set.seed(100)
+n = 100
+chisquare_data <- rchisq(n, v)
+
+hist(chisquare_data, breaks = 10, main = "Histogram Distribusi Chi-Square dari 100 Data Random")
+```
+Dengan keterangan, `hist()` digunakan untuk membuat histogram dengan `breaks` sebesar 10, sedangkan `rchisq()` digunakan untuk men-*generate* data random
+
+Dimana didapatkan output
+
+![4b](https://user-images.githubusercontent.com/90272678/195287987-3c0ddea2-b8fd-4718-9bb4-742464042c24.png)
+
+#### c. Nilai Rataan (μ) dan Varian (σ²) dari Distribusi Chi-Square.
+
+```R
+#nilai rataan
+nilai_rataan <- v; nilai_rataan
+
+#nilai varian
+nilai_varian <- 2*v; nilai_varian
+```
+Dengan keterangan, `v` adalah *degree of freedom*
+
+Dimana didapatkan output 
+
+![4c](https://user-images.githubusercontent.com/90272678/195289562-5bb48dc1-1d74-47de-9456-a7f423deb781.png)
+
+## 5. Diketahui bilangan acak (random variable) berdistribusi exponential (λ = 3). Tentukan
+#### a. Fungsi Probabilitas dari Distribusi Exponensial 
+
+```R
+lambda = 3
+set.seed(1)
+
+#Misalkan ada 10 data random
+dexp(rexp(10, lambda))
+```
+Dengan keterangan, `lambda` adalah *rate* dari distribusi exponential, dan `rexp()` digunakan untuk men-*generate* data random
+
+Dimana didapatkan output
+
+![5a](https://user-images.githubusercontent.com/90272678/195295311-9592d375-14b6-49f5-a87c-e504b2e8e0fc.png)
+
+#### b. Histogram dari Distribusi Exponensial untuk 10, 100, 1000 dan 10000 bilangan random 
+
+```R
+set.seed(1)
+
+#membuat tampilan 2x2
+par(mfrow=c(2,2))
+
+hist(rexp(10, lambda), main = "Histogram Distribusi Exponensial untuk 10 Bilangan Random")
+hist(rexp(100, lambda), main = "Histogram Distribusi Exponensial untuk 100 Bilangan Random")
+hist(rexp(1000, lambda), main = "Histogram Distribusi Exponensial untuk 1000 Bilangan Random")
+hist(rexp(10000, lambda), main = "Histogram Distribusi Exponensial untuk 10000 Bilangan Random")
+```
+Dengan keterangan, `hist()` digunakan untuk membuat histogram, sedangkan `rexp()` digunakan untuk men-*generate* data random
+
+Dimana didapatkan output
+
+![5b](https://user-images.githubusercontent.com/90272678/195297501-638ada5d-6429-4476-9ffa-6c0413ffc248.png)
+
+#### c. Nilai Rataan (μ) dan Varian (σ²) dari Distribusi Exponensial untuk n = 100 dan λ = 3
+
+```R
+set.seed(1)
+n = 100
+lambda = 3
+
+#nilai rataan
+mean(rexp(n, lambda))
+
+#nilai varian
+var(rexp(n, lambda))
+```
+Dengan keterangan, `mean()` digunakan untuk mendapatkan rataan dari data terkait, sedangkan `var()` digunakan untuk mendapatkan variansi 
+
+Dimana didapatkan output
+
+![5c](https://user-images.githubusercontent.com/90272678/195298673-a9391a4e-0bc7-45bf-a1a4-2fb650ad0b53.png)
+
+## 6. Diketahui generate random nilai sebanyak 100 data, mean = 50, sd = 8. Tentukan
+#### a. Fungsi Probabilitas dari Distribusi Normal P(X1 ≤ x ≤ X2), hitung Z-Score Nya dan plot data generate randomnya dalam bentuk grafik. Petunjuk(gunakan fungsi plot()).
+> Keterangan : 
+> X1 = Dibawah rata-rata 
+> X2 = Diatas rata-rata
+
+```R
+set.seed(1)
+n = 100
+mean_data = 50
+sd_data = 8
+
+data <- rnorm(n, mean_data, sd_data); data
+rataan_data <- mean(data)
+
+X1 <- floor(rataan_data); X1
+X2 <- ceiling(rataan_data); X2
+
+upper_prob <- pnorm(X2, mean_data, sd_data)
+lower_prob <- pnorm(X1, mean_data, sd_data)
+probability <- upper_prob - lower_prob ; probability
+
+z_scores <- (data - rataan_data)/ sd(data); z_scores
+#mengembalikan tampilan menjadi 1x1
+par(mfrow=c(1,1))
+
+#plot data generate random
+plot (data)
+```
+Dengan keterangan, `probability` adalah probabilitas dalam range X1 sampai X2, `plot()` digunakan untuk plotting data random 
+
+Dimana didapatkan output
+
+![6a no zscores](https://user-images.githubusercontent.com/90272678/195313391-6e56d2f3-dcd1-4d28-81a0-03728fe24a43.png)
+![6a plot](https://user-images.githubusercontent.com/90272678/195313447-bc2bee37-34de-459b-bfa1-5db20b6d4ba4.png)
+![6a z_scores](https://user-images.githubusercontent.com/90272678/195313461-b198d4c4-a567-4349-a55e-1386a5694743.png)
+
+#### b. Generate Histogram dari Distribusi Normal dengan breaks 50 dan format penamaan:*NRP_Nama_Probstat_{Nama Kelas}_DNhistogram*
+
+```R
+hist(data, breaks = 50, main = "5025211152_Frederick Hidayat_Probstat_A_DNhistogram")
+```
+Dengan keterangan, `hist()` digunakan untuk membuat histogram, sedangkan `main` digunakan untuk memberi nama atau judul pada histogram terkait
+
+Dimana didapatkan output
+
+![6b](https://user-images.githubusercontent.com/90272678/195313823-9ce6223f-9395-4ded-907c-b90f196d701b.png)
+
+
+#### c. Nilai Varian (σ²) dari hasil generate random nilai Distribusi Normal.
+
+```R
+var(data)
+```
+Dengan keterangan, `var` adalah fungsi untuk mencari variansi data
+
+![6c](https://user-images.githubusercontent.com/90272678/195313998-955efb41-5206-4f3b-a3df-d3f6acd6673c.png)
+
+
+#Sekian, Terima kasih
